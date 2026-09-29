@@ -68,7 +68,7 @@ export function createSupabaseBackend(url, anonKey) {
     async uploadAvatar(file) {
       const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
       const path = `${userId}/avatar-${Date.now()}.${ext}`;
-      check(await sb.storage.from('avatars').upload(path, file, { upsert: true, contentType: file.type }));
+      check(await sb.storage.from('avatars').upload(path, file, { contentType: file.type }));
       return sb.storage.from('avatars').getPublicUrl(path).data.publicUrl;
     },
 
